@@ -45,8 +45,10 @@ export async function POST(request) {
   try {
     const resume = await readPrivateResume(data.resumeType);
     if (!resume) {
+      const resumeFile =
+        data.resumeType === "react" ? "Devesh-Resume.pdf" : "Devesh-Magre-Resume.pdf";
       return NextResponse.json(
-        { error: `The private resume file resumes/${data.resumeType === "react" ? "Devesh-Resume.pdf" : "fullstack-resume.pdf"} is missing.` },
+        { error: `The private resume file resumes/${resumeFile} is missing.` },
         { status: 412 },
       );
     }
